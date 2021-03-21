@@ -1,11 +1,9 @@
-using System;
-
+using Azure.Identity;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using Azure.Identity;
+using System;
 
 [assembly: FunctionsStartup(typeof(FunctionApp.Startup))]
 
@@ -15,15 +13,15 @@ namespace FunctionApp
     {
         public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
         {
-            string endpoint = Environment.GetEnvironmentVariable("APPCF_ENDPOINT");
+            string appcfEndpoint = Environment.GetEnvironmentVariable("APPCF_ENDPOINT");
+            string environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             var credential = new DefaultAzureCredential();
-            string env = builder.GetContext().EnvironmentName;
 
             builder.ConfigurationBuilder.AddAzureAppConfiguration(options =>
             {
-                options.Connect(new Uri(endpoint), credential)
-                    .Select("TestApp:Settings:*", env)
-                    .Select("ConnectionStrings:SqlDb:*", env)
+                options.Connect(new Uri(appcfEndpoint), credential)
+                    .Select("TestApp:Settings:*", environmentName)
+                    .Select("ConnectionStrings:SqlDb:*", environmentName)
                     .ConfigureRefresh(refresh =>
                         refresh.Register("TestApp:Settings:Sentinel", refreshAll: true)
                             .SetCacheExpiration(new TimeSpan(0, 5, 0))
