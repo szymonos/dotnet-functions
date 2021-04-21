@@ -38,14 +38,14 @@ namespace FunctionApp
             builder.Services.AddScoped(provider =>
             {
                 // build SQL connection string with SqlConnectionStringBuilder
-                var builder = new SqlConnectionStringBuilder
+                var sqlbuilder = new SqlConnectionStringBuilder
                 {
                     ConnectionString = config.GetConnectionString("SqlDb"),
                     UserID = "user_name",
                     Password = config["TestApp:Settings:db_password"],
                     MultipleActiveResultSets = true
                 };
-                var conn = new SqlConnection(builder.ConnectionString);
+                var conn = new SqlConnection(sqlbuilder.ConnectionString);
                 conn.Open();
                 return conn;
             });

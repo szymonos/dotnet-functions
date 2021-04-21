@@ -1,16 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AzureFunctionsVersion>v3</AzureFunctionsVersion>
-    <RootNamespace>dotnet-functions</RootNamespace>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.3.0"/>
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureAppConfiguration" Version="4.2.1"/>
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="3.1.14"/>
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="2.2.5"/>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.2"/>
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.11"/>
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.38"/>
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
