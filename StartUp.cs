@@ -49,6 +49,9 @@ namespace FunctionApp
                 conn.Open();
                 return conn;
             });
+
+            //AutoHealth
+            builder.Services.AddHealthChecks();
         }
     }
 }
